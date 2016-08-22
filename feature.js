@@ -21,12 +21,24 @@
  */
 
 /* globals DocumentTouch */
-;(function (window, document, undefined) {
+;(function (root, factory) {
+  if (typeof define === "function" && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([], factory);
+  } else if (typeof module === "object" && module.exports) {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like enviroments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals
+    root.feature = factory();
+  }
+}(this, function (undefined) {
   "use strict";
 
   // For minification only
   var docEl = document.documentElement;
-
 
   /**
    * Utilities
@@ -216,6 +228,6 @@
   /**
    * Expose a public-facing API
    */
-  window.feature = Feature;
+  return new Feature();
 
-}(window, document));
+}));
