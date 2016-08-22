@@ -228,6 +228,6 @@
   /**
    * Expose a public-facing API
    */
-  return new Feature();
+  return Feature;
 
 }));
